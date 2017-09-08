@@ -4,7 +4,7 @@
 
 import React from 'react';
 import {render} from 'react-dom';
-import App from "./components/App";  //这里用到了解构
+import App from "./components/App";
 
 render(
     <div>
