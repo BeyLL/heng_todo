@@ -6,8 +6,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import TodoFooter from "./TodoFooter";
 import TodoList from "./TodoList";
 import TodoHeader from "./TodoHeader";
-import store from '../store/index'
-
 
 export default class App extends Component {
     render() {
