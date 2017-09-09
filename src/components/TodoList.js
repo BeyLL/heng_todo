@@ -5,9 +5,10 @@ import React, {Component} from 'react';
 export default class TodoList extends Component{
     render(){
         return (
-            <div>
-                TodoList
-            </div>
+            <ul className="list-group">
+                <li className="list-group-item">学习redux</li>
+                <li className="list-group-item">学习mobx</li>
+            </ul>
         )
     }
 }

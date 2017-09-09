@@ -5,9 +5,7 @@ import React,{Component} from 'react';
 export default class TodoHeader extends Component{
     render(){
         return (
-            <div>
-                TodoHeader
-            </div>
+            <input type="text" className="form-control" placeholder="请输入您要查询的内容"/>
         )
     }
 }
