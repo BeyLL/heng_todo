@@ -1,6 +1,3 @@
-/**
- * Created by "zhangHeng" on 2017/9/9 0009.
- */
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
 import {ADD_TODO} from '../store/action-types'
@@ -22,7 +19,7 @@ class TodoHeader extends Component{
     };
     render(){
         return (
-            <input type="text" className="form-control" placeholder="请输入待办事项"  onKeyDown={this.handelKeyDown}/>
+            <input type="text" className="form-control" placeholder="请输入要办理的事项"  onKeyDown={this.handelKeyDown}/>
         )
     }
 }
