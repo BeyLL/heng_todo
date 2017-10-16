@@ -9,3 +9,5 @@
 yarn add bootstrap react react-dom redux  react-redux 
 
 ```
+##简单说明
+修改过滤器：all(表示全部)  active(表示未完成)  completed(表示已完成)

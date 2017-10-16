@@ -2,9 +2,6 @@ import React, {Component} from  'react';
 import {connect} from 'react-redux';
 import {DELETE_ALL,CHANGE_FILTER} from '../store/action-types'
 class TodoFooter extends Component {
-    constructor(){
-        super();
-    }
     render() {
         return (
             <div className="row">
@@ -14,13 +11,13 @@ class TodoFooter extends Component {
                 <div className="col-sm-6">
                     <button
                         onClick={()=>this.props.changeFilter('all')}
-                        className={"btn "+(this.props.filter==='all'?'btn-success': 'btn-default')}>全部</button>
+                        className={"btn "+(this.props.filter==='all'?'btn-success':'btn-default')}>全部</button>
                     <button
                         onClick={()=>this.props.changeFilter('active')}
-                        className={"btn "+(this.props.filter==='active'?'btn-success': 'btn-default')}>未完成</button>
+                        className={"btn "+(this.props.filter==='active'?'btn-success':'btn-default')}>未完成</button>
                     <button
                         onClick={()=>this.props.changeFilter('completed')}
-                        className={"btn "+(this.props.filter==='completed'?'btn-success': 'btn-default')}>已完成</button>
+                        className={"btn "+(this.props.filter==='completed'?'btn-success':'btn-default')}>已完成</button>
                 </div>
                 <div className="col-sm-3">
                     {
@@ -35,8 +32,8 @@ class TodoFooter extends Component {
 export default connect(
     state => (
         {
-            activeCount: state.todos.filter(item => !item.completed).length,
-            completedCount: state.todos.filter(item => item.completed).length,
+            activeCount: state.todos.list.filter(item => !item.completed).length,
+            completedCount: state.todos.list.filter(item => item.completed).length,
             filter:state.filter
 
         }
@@ -44,6 +41,6 @@ export default connect(
     ),
     {
         deleteAll: () => ({type: 'DELETE_ALL'}),
-        changeFilter:filter=>({type:'CHANGE_FILTER',filter})  //这里的是一个action
+        changeFilter:filter=>({type:'CHANGE_FILTER',filter})
     }
 )(TodoFooter)

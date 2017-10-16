@@ -1,6 +1,4 @@
-/**
- * Created by "zhangHeng" on 2017/9/8 0008.
- */
+//passionZhang  2017/10/15
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import TodoFooter from "./TodoFooter";
@@ -8,7 +6,7 @@ import TodoList from "./TodoList";
 import TodoHeader from "./TodoHeader";
 
 export default class App extends Component {
-    render() {
+ render() {
         return (
             <div>
                 <div className="container" style={{marginTop:'50px'}}>

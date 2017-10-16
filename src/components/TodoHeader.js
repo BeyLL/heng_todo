@@ -5,7 +5,6 @@ class TodoHeader extends Component{
     constructor(props){
         super(props);
         console.log(this.props);
-
     }
     handelKeyDown= e =>{
         if(e.keyCode===13&&e.target.value){
@@ -19,7 +18,7 @@ class TodoHeader extends Component{
     };
     render(){
         return (
-            <input type="text" className="form-control" placeholder="请输入要办理的事项"  onKeyDown={this.handelKeyDown}/>
+            <input type="text" className="form-control" placeholder="请输入要你的未来"  onKeyDown={this.handelKeyDown}/>
         )
     }
 }
