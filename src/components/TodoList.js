@@ -1,12 +1,10 @@
 //passionZhang  2017/10/15
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {DELETE_TODO, TOGGLE_TODO,CHANGE_EDITING,TOGGLE_ALL} from '../store/action-types'
+import {DELETE_TODO, TOGGLE_TODO,CHANGE_EDITING,TOGGLE_ALL,UPDATE_TODOS} from '../store/action-types'
 class TodoList extends Component {
     constructor() {
         super();
-        this.changeContent  = this.changeContent.bind(this)
-        this.changeEditing = this.changeEditing.bind(this)
         this.state = {
             title:''
         }
@@ -20,7 +18,23 @@ class TodoList extends Component {
              title:item.title
 })
     }
-    changeContent(event){
+    handleKeyDown(event,id){
+       if(event.keyCode===27){
+        this.setState({
+            title:this.title
+        })
+        this.props.changeEditing('');
+       }else if(event.keyCode===13){
+        this.setState({
+            title:this.state.title
+        },()=>{
+            console.log(this.state)
+        })
+        this.props.changeEditing('');
+        this.props.updateTodos(id,this.state.title)
+       }
+    }
+    changeContent=event=>{
       this.setState({
         title:event.target.value
       })
@@ -49,12 +63,13 @@ class TodoList extends Component {
                             this.props.editingId===item.id?
 
 
-                            <input type="text"  value={item.title}
+                            <input type="text"  value={this.state.title}
                              onChange={this.changeContent}
+                             onKeyDown={(event)=>this.handleKeyDown(event,item.id)}
 
                             />:
                             <span
-                            onDoubleClick={this.changeEditing(item.id)}
+                            onDoubleClick={()=>this.changeEditing(item.id)}
                             style={{marginLeft: '7px',textDecoration:item.completed?'line-through':''}}>{item.title} {item.time}</span>
                             }
 
@@ -96,6 +111,7 @@ export default connect(
         deleteTodo: id => ({type: DELETE_TODO, id}),
         toggleTodo: id => ({type: TOGGLE_TODO, id}),
         changeEditing: id=>({type:CHANGE_EDITING,id}),
-        toggleAll: check=>({type:TOGGLE_ALL,check})
+        toggleAll: check=>({type:TOGGLE_ALL,check}),
+        updateTodos: (id,title)=>({type:UPDATE_TODOS,id,title})
     }
 )(TodoList)

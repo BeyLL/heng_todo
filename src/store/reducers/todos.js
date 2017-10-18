@@ -1,11 +1,16 @@
-import {ADD_TODO, DELETE_TODO, TOGGLE_TODO,DELETE_ALL,CHANGE_EDITING,TOGGLE_ALL} from '../action-types'
+import {ADD_TODO, DELETE_TODO, TOGGLE_TODO,DELETE_ALL,CHANGE_EDITING,TOGGLE_ALL,UPDATE_TODOS} from '../action-types'
 //todo的reducer
-export default function (state = {editingId:'',list:[]}, action) {
+let list = localStorage.getItem('my')?JSON.parse(localStorage.getItem('my')):[];
+let initialState = {editingId:'',list}
+export default function (state = initialState, action) {
     switch (action.type) {
         case ADD_TODO:
+        let list = [...state.list,{id: Date.now(), title: action.title, completed: false}]
+        localStorage.setItem('my',JSON.stringify(list))
             return {
                 ...state,
-                list:[...state.list, {id: Date.now(), title: action.title, completed: false,time:new Date().toLocaleString()}]};
+                list
+            }
         case DELETE_TODO:
             return {
                 ...state,
@@ -37,6 +42,16 @@ export default function (state = {editingId:'',list:[]}, action) {
                 list:state.list.map(item=>{
                     item.completed = action.check;
                     return item
+                })
+            };
+            case UPDATE_TODOS:
+            return {
+                ...state,
+                list:state.list.map(item=>{
+                    if(item.id===action.id){
+                        item.title = action.title
+                    }
+                    return item;
                 })
             }
         default:
