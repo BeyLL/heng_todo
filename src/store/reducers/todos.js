@@ -44,15 +44,18 @@ export default function (state = initialState, action) {
                     return item
                 })
             };
-            case UPDATE_TODOS:
+            case UPDATE_TODOS: 
+            let waiteTodos  = JSON.parse(localStorage.getItem('my'));
+                list= waiteTodos.map(item=>{
+                if(item.id===action.id){
+                    item.title=action.title
+                }
+                return item;
+            })
+           localStorage.setItem('my',JSON.stringify(list))
             return {
                 ...state,
-                list:state.list.map(item=>{
-                    if(item.id===action.id){
-                        item.title = action.title
-                    }
-                    return item;
-                })
+                list
             }
         default:
             return state;
